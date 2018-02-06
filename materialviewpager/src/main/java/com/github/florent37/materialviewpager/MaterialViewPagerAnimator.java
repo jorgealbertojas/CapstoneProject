@@ -490,8 +490,10 @@ public class MaterialViewPagerAnimator {
         }
     }
 
+
+    // Tirei para não levantar tudo
     private boolean toolbarJoinsTabs() {
-        return (mHeader.toolbar.getBottom() == mHeader.mPagerSlidingTabStrip.getTop() + ViewCompat.getTranslationY(mHeader.mPagerSlidingTabStrip));
+        return false;//(mHeader.toolbar.getBottom() == mHeader.mPagerSlidingTabStrip.getTop() + ViewCompat.getTranslationY(mHeader.mPagerSlidingTabStrip));
     }
 
     //endregion

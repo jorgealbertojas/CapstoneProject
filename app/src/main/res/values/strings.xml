@@ -3,4 +3,12 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="opcao_2">Questionário</string>
+    <string name="opcao_3">Verificar Conexão</string>
+    <string name="opcao_4">Informação Sistema</string>
+    <string name="opcao_5">Logout</string>
 </resources>

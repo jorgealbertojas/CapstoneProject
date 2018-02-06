@@ -2,22 +2,27 @@ package com.example.jorge.myenglishcourse;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.jorge.myenglishcourse.Utilite.Common;
 import com.example.jorge.myenglishcourse.fragment.RecyclerViewFragment;
+import com.example.jorge.myenglishcourse.menuMain.NavigationDrawer;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends DrawerActivity {
+public class MainActivity extends DrawerActivity implements NavigationDrawer.FragmentDrawerListener{
 
     @BindView(R.id.materialViewPager)     MaterialViewPager mViewPager;
+
+    private Toolbar mToolbar;
+    private NavigationDrawer drawerFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,8 @@ public class MainActivity extends DrawerActivity {
         setContentView(R.layout.activity_main);
         setTitle("");
         ButterKnife.bind(this);
+
+        loadMenu();
 
         final Toolbar toolbar = mViewPager.getToolbar();
         if (toolbar != null) {
@@ -108,6 +115,54 @@ public class MainActivity extends DrawerActivity {
                     Toast.makeText(getApplicationContext(), "Yes, the title is clickable", Toast.LENGTH_SHORT).show();
                 }
             });
+        }
+    }
+
+    private void loadMenu() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        // actionBarTitle = (TextView) mToolbar.findViewById(R.id.actionbarTitle);
+
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        drawerFragment = (NavigationDrawer) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
+
+        final DrawerLayout nDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+     //   drawerFragment.setDrawerListener(this);
+
+       /* actionBarTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nDrawerLayout.openDrawer(Gravity.LEFT);
+            }
+        });*/
+    }
+
+    @Override
+    public void onDrawerItemSelected(View view, int position) {
+        Common.position = position;
+
+
+        if (position == 0){
+            // Intent nLogin = new Intent(MainActivity.this, OcorrenciaActivityNEW.class);
+            //  startActivity(nLogin);
+         //   MainFragment MainFragment = new MainFragment();
+         //   ft = getFragmentManager().beginTransaction();
+         //   ft.replace( R.id.container_body, MainFragment);
+        //    ft.commit();
+        } else if (position == 1){
+        //    InternetFragment internetFragment = new InternetFragment();
+        //    ft = getFragmentManager().beginTransaction();
+        //    ft.replace(R.id.container_body, internetFragment);
+       //     ft.commit();
+        }else if (position == 2){
+       //     InformacaoFragment informacaoFragment = new InformacaoFragment();
+      //      ft = getFragmentManager().beginTransaction();
+       //     ft.replace(R.id.container_body, informacaoFragment);
+      //      ft.commit();
+        }else if (position == 3){
+            finish();
         }
     }
 }
