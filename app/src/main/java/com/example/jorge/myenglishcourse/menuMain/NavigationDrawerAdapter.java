@@ -28,6 +28,13 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     private LayoutInflater inflater;
     private Context context;
 
+    // Define listener member variable
+    private OnItemClickListener listener;
+    // Define the listener interface
+    public interface OnItemClickListener {
+        void onItemClick(View itemView, int position);
+    }
+
     public NavigationDrawerAdapter(Context context, List<NavDrawerItem> data) {
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -91,6 +98,28 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
             title = (TextView) itemView.findViewById(R.id.title);
             ImageViewtitle = (ImageView) itemView.findViewById(R.id.ImageViewtitle);
             title.setTypeface(Typeface.createFromAsset(title.getContext().getAssets(), "fonts/Signika-Regular.ttf"));
+        }
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvName;
+        public TextView tvHometown;
+
+        public ViewHolder(final View itemView) {
+            super(itemView);
+             // Setup the click listener
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Triggers click upwards to the adapter on click
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(itemView, position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

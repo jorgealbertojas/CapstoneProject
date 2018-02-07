@@ -4,6 +4,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string name="Error_Access">No access internet</string>
+    <string name="Error_Access_empty">Data empty! There were problems consuming the product, please use RESTORE button.</string>
+
+
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
